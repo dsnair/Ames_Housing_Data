@@ -10,10 +10,10 @@ pd.set_option('display.max_rows', 90)
 train = pd.read_csv("train.csv")
 
 # Find missing values
-train.head()		  # notice NaN
+train.head()		# notice NaN
 train.describe()	# notice different counts due to NaN
-train.dtypes		  # variable data types
-train.shape			  # data dimension = # rows, # columns
+train.dtypes		# variable data types
+train.shape		# data dimension = # rows, # columns
 
 # Drop these variables due to lots of missing values; also drop Id
 train.count()		# count NaN
@@ -57,7 +57,7 @@ py.plot(fig)
 # Neighborhood: Physical locations within Ames city limits
 nghdTab = train['Neighborhood'].value_counts()	# frequency table
 nghdTab
-frqDict = nghdTab.to_dict()						          # convert to dictionary
+frqDict = nghdTab.to_dict()			# convert to dictionary
 bar = [go.Bar(x = frqDict.keys(), y = frqDict.values())]
 layout = go.Layout(title = "Physical locations within Ames city limits", 
 				xaxis = dict(title = "Neighborhood"), 
@@ -68,7 +68,7 @@ py.plot(fig)
 # OverallQual: Overall material and finish quality
 qualTab = train['OverallQual'].value_counts()	# frequency table
 qualTab
-frqDict = qualTab.to_dict()						        # convert to dictionary
+frqDict = qualTab.to_dict()			# convert to dictionary
 bar = [go.Bar(x = frqDict.keys(), y = frqDict.values())]
 layout = go.Layout(title = "Overall material and finish quality", 
 				xaxis = dict(title = "OverallQual"), 
@@ -115,7 +115,7 @@ py.plot(fig)
 # GarageCars: Size of garage in car capacity
 carsTab = train['GarageCars'].value_counts()	# frequency table
 carsTab
-frqDict = carsTab.to_dict()						        # convert to dictionary
+frqDict = carsTab.to_dict()			# convert to dictionary
 bar = [go.Bar(x = frqDict.keys(), y = frqDict.values())]
 layout = go.Layout(title = "Size of garage in car capacity", 
 				xaxis = dict(title = "GarageCars (# of cars)"), 
@@ -135,7 +135,7 @@ py.plot(fig)
 # OverallCond: Overall condition rating
 condTab = train['OverallCond'].value_counts()	# frequency table
 condTab
-frqDict = condTab.to_dict()						        # convert to dictionary
+frqDict = condTab.to_dict()			# convert to dictionary
 bar = [go.Bar(x = frqDict.keys(), y = frqDict.values())]
 layout = go.Layout(title = "Overall condition rating", 
 				xaxis = dict(title = "OverallCond"), 

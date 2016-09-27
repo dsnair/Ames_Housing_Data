@@ -1,6 +1,5 @@
 library(DMwR)
 
-
 # testing data
 test = read.csv("test.csv", header = TRUE)
 head(test)
@@ -17,21 +16,21 @@ naVars = names(sort(sapply(test, function(i) sum(is.na(i))), decreasing = TRUE)[
 
 # NA for factor variables is not a literal NA, according to the codebook
 facVars = names(test[, sapply(test, is.factor)])	# find factor variables
-naFacVars = intersect(naVars, facVars)				# find factor variables with NA
+naFacVars = intersect(naVars, facVars)			# find factor variables with NA
 for (i in naFacVars) {
 	# append "None" to factor levels
 	test[[i]] = factor(test[[i]], levels = c(levels(test[[i]]), "None"))
-	test[[i]][is.na(test[[i]])] = "None"			# replace NA with None
+	test[[i]][is.na(test[[i]])] = "None"		# replace NA with None
 }
 
 lapply(test, levels)
 
 
 # replace actual NA in data with k-NN algorithm
-testImp = knnImputation(test)					# since response variable is unavailable
+testImp = knnImputation(test)				# since response variable is unavailable
 
 head(testImp)
-colnames(testImp)[colSums(is.na(testImp)) > 0]	# check no NA remains in data
+colnames(testImp)[colSums(is.na(testImp)) > 0]		# check no NA remains in data
 
 
 # handle different data types
@@ -40,7 +39,7 @@ colnames(testImp)[colSums(is.na(testImp)) > 0]	# check no NA remains in data
 table(sapply(test, class))
 table(sapply(testImp, class))
 
-naIntVars = setdiff(naVars, naFacVars)	# find integer variables with NA
+naIntVars = setdiff(naVars, naFacVars)			# find integer variables with NA
 for (i in naIntVars) {
 	testImp[[i]] = as.integer(round(testImp[[i]]))
 }

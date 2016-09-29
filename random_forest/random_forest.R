@@ -58,7 +58,7 @@ fitLogRF = randomForest(log10(train[, 1]) ~ ., data = train[, 2:80], importance 
 fitLogRF
 
 trainLogRF = predict(fitLogRF, newdata = train, type = "response")
-mean((trainLogRF - log10(train[, 1]))^2)	# MSE; easy to understand
+mean((trainLogRF - log10(train[, 1]))^2)			# MSE; easy to understand
 
 
 # make predictions from random forests
@@ -90,7 +90,7 @@ dev.off()
 
 
 # variable importance
-round(importance(fitRF), 2)		# higher the %IncMSE, more important the variable
+round(importance(fitRF), 2)			# higher the %IncMSE, more important the variable
 round(importance(fitLogRF), 2)
 
 	# GrLvArea, Neighborhood, TotalBsmtSF, OverallQual are the most important predictors

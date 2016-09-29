@@ -11,8 +11,8 @@ summary(train)
 dim(train)
 
 
-# handle missing values in train data
-# -----------------------------------
+# impute missing values in train data via random forest
+# -----------------------------------------------------
 
 # find variables with NA's
 data.frame(sort(sapply(train, function(i) sum(is.na(i))), decreasing = TRUE))

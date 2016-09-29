@@ -1,5 +1,6 @@
 library(DMwR)
 
+
 # testing data
 test = read.csv("test.csv", header = TRUE)
 head(test)
@@ -7,8 +8,8 @@ summary(test)
 dim(test)
 
 
-# handle missing values in test data
-# -----------------------------------
+# impute missing values in test data via k-NN
+# -------------------------------------------
 
 # find variables with NA's
 data.frame(sort(sapply(test, function(i) sum(is.na(i))), decreasing = TRUE))

@@ -18,7 +18,7 @@ head(test)
 # prepare data
 # ------------
 
-facVars = names(train[, sapply(train, is.factor)])          # factor variables from train data
+facVars = names(train[, sapply(train, is.factor)])		# factor variables from train data
 
 # append levels of train data to test data
 for (i in facVars) {

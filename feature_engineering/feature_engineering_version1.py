@@ -194,7 +194,6 @@ Exterior2nd = data["Exterior2nd"] \
 Exterior2nd.value_counts()
 
 np.equal(Exterior1st, Exterior2nd).value_counts()  # check if both columns are same
-
     # since both variables roughly have the same distribution
     # and most houses have only one exterior material, keep only one of them
 new["Exterior"] = Exterior1st
@@ -203,8 +202,8 @@ new.head()
 
 # MasVnrType
 data["MasVnrType"].isnull().sum()
-data["MasVnrType"].fillna("None").value_counts()
-new["MasVnrType"] = data["MasVnrType"]
+data["MasVnrType"].value_counts()
+new["MasVnrType"] = data["MasVnrType"].fillna("None")
 new["MasVnrType"].value_counts()
 new.head()
 
@@ -232,37 +231,43 @@ new.head()
 
 # BsmtQual
 data["BsmtQual"].isnull().sum()  # NA is not missing
-data["BsmtQual"].fillna("None").value_counts()
-new["BsmtQual"] = data["BsmtQual"].map({"Ex": 4, "Gd": 3, "TA": 2, "Fa": 1, "Po": 1, "None": 0})
+data["BsmtQual"].value_counts()
+new["BsmtQual"] = data["BsmtQual"].fillna("None") \
+.map({"Ex": 4, "Gd": 3, "TA": 2, "Fa": 1, "Po": 1, "None": 0})
 new["BsmtQual"].value_counts()
 new.head()
 
 # BsmtCond
 data["BsmtCond"].isnull().sum()  # NA is not missing
-data["BsmtCond"].fillna("None").value_counts()
-new["BsmtCond"] = data["BsmtCond"].map({"Ex": 4, "Gd": 3, "TA": 2, "Fa": 1, "Po": 1, "None": 0})
+data["BsmtCond"].value_counts()
+new["BsmtCond"] = data["BsmtCond"].fillna("None") \
+.map({"Ex": 4, "Gd": 3, "TA": 2, "Fa": 1, "Po": 1, "None": 0})
 new["BsmtCond"].value_counts()  # NOT enough variety!
 new.head()
 
 # BsmtExposure
 data["BsmtExposure"].isnull().sum()  # NA is not missing
-data["BsmtExposure"].fillna("None").value_counts()
-new["BsmtExposure"] = data["BsmtExposure"].map({"Gd": 3, "Av": 2, "Mn": 1, "No": 0, "None": 0})
+data["BsmtExposure"].value_counts()
+new["BsmtExposure"] = data["BsmtExposure"].fillna("None") \
+.map({"Gd": 3, "Av": 2, "Mn": 1, "No": 0, "None": 0})
 new["BsmtExposure"].value_counts()
 new.head()
 
 # BsmtFinType1 and BsmtFinType2
 data["BsmtFinType1"].isnull().sum()  # NA is not missing
 data["BsmtFinType2"].isnull().sum()  # NA is not missing
-data["BsmtFinType1"].fillna("None").value_counts()
-data["BsmtFinType2"].fillna("None").value_counts()
-type1 = data["BsmtFinType1"].map({"GLQ": 3, "ALQ": 2, "Rec": 2, "BLQ": 1, "LwQ": 1, "Unf": 0, "None": 0})
-type2 = data["BsmtFinType2"].map({"GLQ": 3, "ALQ": 2, "Rec": 2, "BLQ": 1, "LwQ": 1, "Unf": 0, "None": 0})
+data["BsmtFinType1"].value_counts()
+data["BsmtFinType2"].value_counts()
+type1 = data["BsmtFinType1"].fillna("None") \
+.map({"GLQ": 3, "ALQ": 2, "Rec": 2, "BLQ": 1, "LwQ": 1, "Unf": 0, "None": 0})
+type2 = data["BsmtFinType2"].fillna("None") \
+.map({"GLQ": 3, "ALQ": 2, "Rec": 2, "BLQ": 1, "LwQ": 1, "Unf": 0, "None": 0})
 type1.value_counts()
 type2.value_counts()
 np.equal(type1, type2).value_counts()  # most houses have 2nd rating
     # basement unfinished?: Y (1) or No (0)
 new["BsmtFinType"] = pd.Series(np.logical_or(type1 == 0.0, type2 == 0.0))
+new["BsmtFinType"] = np.where(new["BsmtFinType"] == True, 1, 0)
 new["BsmtFinType"].value_counts()  # NOT enough variety!
 new.head()
 
@@ -277,6 +282,11 @@ new.head()
 # HeatingQC
 
 # CentralAir
+data["CentralAir"].isnull().sum()
+data["CentralAir"].value_counts()
+new["CentralAir"] = np.where(data["CentralAir"] == "Y", 1, 0)
+new["CentralAir"].value_counts()  # NOT enough variety!
+new.head()
 
 # Electrical
 
@@ -299,8 +309,20 @@ new.head()
 # Functional
 
 # Fireplaces
+data["Fireplaces"].isnull().sum()
+data["Fireplaces"].value_counts()
+    # has fireplace?: Y (1) or No (0)
+new["Fireplaces"] = np.where(data["Fireplaces"] > 0, 1, 0)
+print new["Fireplaces"].value_counts()
+new.head()
 
 # FireplaceQu
+data["FireplaceQu"].isnull().sum()
+data["FireplaceQu"].value_counts()  # NA isn't missing
+new["FireplaceQu"] = data["FireplaceQu"].fillna("None") \
+.map({"Ex": 3, "Gd": 3, "TA": 2, "Fa": 1, "Po": 1, "None": 0})
+print new["FireplaceQu"].value_counts()
+new.head()
 
 # GarageType
 

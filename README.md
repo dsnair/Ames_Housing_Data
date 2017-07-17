@@ -8,4 +8,3 @@ Given 80 explanatory variables, predict the values of 1459 residential homes in 
 1. Data cleaning
 2. Feature engineering
 3. Exercising various machine learning algorithms for target predictions
-4. Rank: Top 65th percentile among 1,700 teams (analysis still in-progress)

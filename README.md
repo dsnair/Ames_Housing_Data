@@ -7,4 +7,4 @@ Given 80 explanatory variables, predict the values of 1459 residential homes in 
 # Work Summary
 1. Data cleaning
 2. Feature engineering
-3. Exercising various machine learning algorithms for target predictions
+3. Predict house prices with ML algorithms: Random forest, ridge regression, mean-shift clustering, correlation analysis

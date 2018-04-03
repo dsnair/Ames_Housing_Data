@@ -5,6 +5,10 @@ Given 80 explanatory variables, predict the values of 1459 residential homes in 
 ## Data file type: CSV
 
 # Work Summary
-1. Data cleaning
+1. Data pre-processing
 2. Feature engineering
-3. Predict house prices with ML algorithms: Random forest, ridge regression, mean-shift clustering, correlation analysis
+3. Predict house prices with ML algorithms:
+  * Random forest
+  * Ridge regression
+  * Mean-shift clustering
+  * Correlation analysis

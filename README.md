@@ -10,5 +10,4 @@ Given 80 explanatory variables, predict the values of 1459 residential homes in 
 3. Predict house prices with ML algorithms:
   * Random forest
   * Ridge regression
-  * Mean-shift clustering
   * Correlation analysis
